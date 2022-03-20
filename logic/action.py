@@ -11,11 +11,11 @@ import time
 
 from workflow import Workflow3 as Workflow
 
-import colors
-import harmony
-import request
-import setup
-import utils
+from . import colors
+from . import harmony
+from . import request
+from . import setup
+from . import utils
 
 
 class HueAction:

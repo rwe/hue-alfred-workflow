@@ -8,8 +8,8 @@ import sys
 from workflow import Workflow3 as Workflow
 import yaml
 
-import colors
-import utils
+from . import colors
+from . import utils
 
 
 class HueFilterBase:
@@ -227,7 +227,7 @@ save_scene:
         if type == self.LIGHT_TYPE:
             self.icon = ('%s.png' % id) if is_on else 'off.png'
 
-        if len(control) is 1:
+        if len(control) == 1:
             self.partial_query = control[0]
 
             if type == self.GROUP_TYPE or is_on:
@@ -300,7 +300,7 @@ save_scene:
                 self.icon = 'scene.png'
                 self.partial_query = value
                 scenes = utils.get_scenes(id)
-                items = sorted(scenes.items(), key=lambda (k, v): v.get('lastupdated'))
+                items = sorted(scenes.items(), key=lambda kv: kv[1].get('lastupdated'))
                 for sid, scene in items:
                     self._add_item(
                         title=scene['name'],

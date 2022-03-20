@@ -7,8 +7,8 @@ from os import system
 import requests
 from workflow import Workflow3 as Workflow
 
-import request
-import utils
+from . import request
+from . import utils
 
 
 def set_bridge(bridge_ip=None):
