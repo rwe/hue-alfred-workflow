@@ -2,7 +2,7 @@ from __future__ import division
 
 import math
 
-from .packages.colour import Color
+from colour import Color
 
 
 MODES = (

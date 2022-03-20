@@ -9,7 +9,7 @@ import random
 import sys
 import time
 
-from packages.workflow import Workflow3 as Workflow
+from workflow import Workflow3 as Workflow
 
 import colors
 import harmony

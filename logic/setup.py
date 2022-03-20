@@ -4,8 +4,8 @@ from __future__ import unicode_literals
 import json
 from os import system
 
-from packages import requests
-from packages.workflow import Workflow3 as Workflow
+import requests
+from workflow import Workflow3 as Workflow
 
 import request
 import utils

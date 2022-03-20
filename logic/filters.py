@@ -5,8 +5,8 @@ import json
 import os
 import sys
 
-from packages.workflow import Workflow3 as Workflow
-from packages import yaml
+from workflow import Workflow3 as Workflow
+import yaml
 
 import colors
 import utils
