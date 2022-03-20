@@ -10,9 +10,13 @@ def _fix_vendored():
     import sys
 
     vendored = (
+        'charset_normalizer',
+        'certifi',
         'colour',
+        'idna',
         os.path.join('png', 'code'),
         'requests',
+        os.path.join('urllib3', 'src'),
         'workflow',
         os.path.join('yaml', 'lib'),
     )

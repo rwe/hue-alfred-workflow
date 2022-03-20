@@ -7,9 +7,21 @@
 [submodule "requests"]
 	path = logic/packages/requests
 	url = git@github.com:psf/requests.git
+[submodule "urllib3"]
+	path = logic/packages/urllib3
+	url = git@github.com:urllib3/urllib3.git
 [submodule "png"]
 	path = logic/packages/png
 	url = git@github.com:drj11/pypng.git
+[submodule "charset_normalizer"]
+	path = logic/packages/charset_normalizer
+	url = git@github.com:Ousret/charset_normalizer.git
+[submodule "certifi"]
+	path = logic/packages/certifi
+	url = git@github.com:certifi/python-certifi.git
+[submodule "idna"]
+	path = logic/packages/idna
+	url = git@github.com:kjd/idna.git
 [submodule "colour"]
 	path = logic/packages/colour
 	url = git@github.com:vaab/colour.git
