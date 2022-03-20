@@ -35,7 +35,7 @@ class HueFilterBase:
     def __init__(self, workflow):
         self.query = workflow.args[0]
         self.workflow = workflow
-        self.templates = yaml.load(self.templates_yaml)
+        self.templates = yaml.safe_load(self.templates_yaml)
 
     def _add_item(self, string_key=None, **item):
         if string_key and self.templates.get(string_key):
