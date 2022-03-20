@@ -2,7 +2,6 @@ import json
 import os
 import sys
 
-from workflow import Workflow3 as Workflow
 import yaml
 
 from . import colors
@@ -30,7 +29,7 @@ class HueFilterBase:
     workflow = None
 
     def __init__(self, workflow):
-        self.query = workflow.args[0]
+        self.query = workflow.args[1]
         self.workflow = workflow
         self.templates = yaml.safe_load(self.templates_yaml)
 
@@ -447,21 +446,9 @@ save_scene:
         return self.items
 
 
-def main(workflow):
-    if workflow.update_available:
-        workflow.add_item(
-            'New version available!',
-            'Press enter to install the update.',
-            autocomplete='workflow:update')
+def run_filters(workflow):
     hue_index_filter = HueIndexFilter(workflow)
     items = hue_index_filter.get_items()
     for item in items:
         i = workflow.add_item(**item)
     workflow.send_feedback()
-
-
-if __name__ == '__main__':
-    workflow = Workflow(update_settings={
-        'github_slug': 'benknight/hue-alfred-workflow',
-    })
-    sys.exit(workflow.run(main))

@@ -6,8 +6,6 @@ import random
 import sys
 import time
 
-from workflow import Workflow3 as Workflow
-
 from . import colors
 from . import harmony
 from . import request
@@ -197,10 +195,11 @@ class HueAction:
 
         return
 
-def main(workflow):
+
+def run_action(workflow):
     # Handle multiple queries separated with '|' (pipe) character
-    queries = workflow.args[0].split('|')
-    
+    queries = workflow.args[1].split('|')
+
     for query_str in queries:
         query = query_str.split(':')
         if query[0] == 'set_bridge':
@@ -212,8 +211,3 @@ def main(workflow):
                 print('Action completed! <%s>' % query_str)
             except ValueError:
                 pass
-
-
-if __name__ == '__main__':
-    workflow = Workflow()
-    sys.exit(workflow.run(main))
