@@ -24,6 +24,9 @@ def _fix_vendored():
 
     importlib.invalidate_caches()
 
+    from workflow.workflow import PickleSerializer, manager as serializer_manager
+    serializer_manager.register('cpickle', PickleSerializer)
+
 
 _fix_vendored()
 del _fix_vendored
