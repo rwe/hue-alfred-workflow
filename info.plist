@@ -214,7 +214,7 @@
 				<key>runningsubtext</key>
 				<string>Connecting to bridge...</string>
 				<key>script</key>
-				<string>/usr/bin/python -m logic.filters "{query}"</string>
+				<string>/usr/bin/python3 -m logic.filters "{query}"</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -422,7 +422,7 @@ color_picker($action);</string>
 				<key>escaping</key>
 				<integer>4</integer>
 				<key>script</key>
-				<string>/usr/bin/python -m logic.action "{query}"</string>
+				<string>/usr/bin/python3 -m logic.action "{query}"</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
