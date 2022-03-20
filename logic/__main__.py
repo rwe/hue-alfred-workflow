@@ -1,5 +1,6 @@
 import sys
 from .action import run_action
+from .colorpicker import run_colorpicker
 from .filters import run_filters
 
 from workflow import Workflow3
@@ -19,6 +20,9 @@ def _main(argv):
     elif command_name == 'action':
         workflow = Workflow3()
         main = run_action
+    elif command_name == 'colorpicker':
+        workflow = Workflow3()
+        main = run_colorpicker
     else:
         raise ValueError('Invalid command %s', command_name)
     return workflow.run(main)

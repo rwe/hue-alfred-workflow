@@ -1,5 +1,4 @@
 import os
-import sys
 import json
 from subprocess import check_output, DEVNULL
 
@@ -22,8 +21,8 @@ def pick_color(default_color_rgb=(0.5, 0.5, 0.5)):
     return (r, g, b)
 
 
-if __name__ == '__main__':
-    action_template = sys.argv[1:]
+def run_colorpicker(workflow):
+    action_template = workflow.args[1:]
     assert any('<color>' in w for w in action_template)
 
     # convert normalized float components in [0,1] to hex string, like "ff00ff".
