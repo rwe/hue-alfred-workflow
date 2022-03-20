@@ -243,25 +243,13 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>function color_picker($action) {
-	$hex = `./colorpick -startColor ffffff -mode 6`;
-	$action = str_replace('&lt;color&gt;', $hex, $action);
-	return `osascript -e 'tell application "Alfred" to search "hue $action"'`;
-}
-
-$q = &lt;&lt;&lt;EOD
-{query}
-EOD;
-
-$control = explode(' ', $q);
-$action = $control[1];
-color_picker($action);</string>
+				<string>/usr/bin/python3 -m logic.colorpicker "$@"</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
-				<integer>1</integer>
+				<integer>0</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
