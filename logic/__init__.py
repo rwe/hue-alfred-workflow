@@ -9,8 +9,15 @@ def _fix_vendored():
     import os.path
     import sys
 
+    vendored = (
+        'colour',
+        os.path.join('png', 'code'),
+        'requests',
+        'workflow',
+        os.path.join('yaml', 'lib'),
+    )
     vendored_dir = os.path.join(os.path.dirname(__file__), 'packages')
-    sys.path = sys.path[0:1] + [vendored_dir] + sys.path[1:]
+    sys.path = sys.path[0:1] + [os.path.join(vendored_dir, p) for p in vendored] + sys.path[1:]
 
     # Make sure that `workflow.background` sees our terrible mutated path
     os.environ['PYTHONPATH'] = ':'.join(sys.path)

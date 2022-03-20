@@ -1,0 +1,15 @@
+[submodule "workflow"]
+	path = logic/packages/workflow
+	url = git@github.com:deanishe/alfred-workflow.git
+[submodule "yaml"]
+	path = logic/packages/yaml
+	url = git@github.com:yaml/pyyaml.git
+[submodule "requests"]
+	path = logic/packages/requests
+	url = git@github.com:psf/requests.git
+[submodule "png"]
+	path = logic/packages/png
+	url = git@github.com:drj11/pypng.git
+[submodule "colour"]
+	path = logic/packages/colour
+	url = git@github.com:vaab/colour.git
