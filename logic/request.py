@@ -1,6 +1,3 @@
-# encoding: utf-8
-from __future__ import unicode_literals
-
 import requests
 from workflow import Workflow3 as Workflow
 
