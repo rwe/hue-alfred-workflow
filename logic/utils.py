@@ -61,10 +61,7 @@ def create_light_icon(lid, light_data):
     else:
         rgb_value = (255, 255, 255) if light_data['state']['on'] else (0, 0, 0)
 
-    f = open('icons/%s.png' % lid, 'wb')
-    w = png.Writer(1, 1)
-    w.write(f, [rgb_value])
-    f.close()
+    png.from_array([rgb_value], mode='RGB').save('icons/%s.png' % lid)
 
 
 def get_lights(from_cache=False):
