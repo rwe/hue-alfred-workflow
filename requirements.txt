@@ -1,5 +1,10 @@
-git+ssh://github.com/deanishe/alfred-workflow.git@6b5d906
-colour==0.1.2
-pypng==0.0.16
-PyYAML==3.10
-requests==1.2.0
+git+ssh://github.com/NorthIsUp/alfred-workflow-py3.git@3459e2417cb7fd92c6cfce1ca4db77949e68349a
+certifi==2021.10.8
+charset-normalizer==2.0.12
+colour==0.1.5
+idna==3.3
+pypng==0.0.21
+PyYAML==6.0
+requests==2.27.1
+six==1.16.0
+urllib3==1.26.9
