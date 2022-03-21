@@ -15,8 +15,9 @@ from . import utils
 
 class HueAction:
 
-    def __init__(self):
-        self.hue_request = request.HueRequest()
+    def __init__(self, workflow):
+        self.workflow = workflow
+        self.hue_request = request.HueRequest(workflow)
 
     def _get_xy_color(self, color, gamut):
         """Validate and convert hex color to XY space."""
@@ -36,8 +37,8 @@ class HueAction:
             )
 
     def _shuffle_group(self, group_id):
-        lights = utils.get_lights()
-        lids = utils.get_group_lids(group_id)
+        lights = utils.get_lights(self.workflow)
+        lids = utils.get_group_lids(self.workflow, group_id)
 
         # Only shuffle the lights that are on
         on_lids = [lid for lid in lids if lights[lid]['state']['on']]
@@ -51,8 +52,8 @@ class HueAction:
         self._set_palette(on_lids, shuffled)
 
     def _set_harmony(self, group_id, mode, root):
-        lights = utils.get_lights()
-        lids = utils.get_group_lids(group_id)
+        lights = utils.get_lights(self.workflow)
+        lids = utils.get_group_lids(self.workflow, group_id)
         palette = []
 
         on_lids = [lid for lid in lids if lights[lid]['state']['on']]
@@ -76,8 +77,8 @@ class HueAction:
         rid = action[1]
         function = action[2]
         value = action[3] if len(action) > 3 else None
-        lights = utils.get_lights()
-        groups = utils.get_groups()
+        lights = utils.get_lights(self.workflow)
+        groups = utils.get_groups(self.workflow)
 
         # Default API request parameters
         method = 'put'
@@ -182,7 +183,7 @@ class HueAction:
 
 
         elif function == 'save':
-            lids = utils.get_group_lids(rid)
+            lids = utils.get_group_lids(self.workflow, rid)
             method = 'post'
             endpoint = '/scenes'
             data = {'name': value, 'lights': lids, 'recycle': False}
@@ -203,9 +204,9 @@ def run_action(workflow):
     for query_str in queries:
         query = query_str.split(':')
         if query[0] == 'set_bridge':
-            setup.set_bridge(query[1] if len(query) > 1 else None)
+            setup.set_bridge(workflow, query[1] if len(query) > 1 else None)
         else:
-            action = HueAction()
+            action = HueAction(workflow)
             try:
                 action.execute(query)
                 print('Action completed! <%s>' % query_str)

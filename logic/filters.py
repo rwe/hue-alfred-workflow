@@ -76,8 +76,8 @@ all_lights:
         if ((query.startswith('lights') or query.startswith('groups')) and len(query.split(':')) >= 3):
             action_filter = HueActionFilter(self.workflow)
             control = query.split(':')
-            lights = utils.get_lights(from_cache=True)
-            groups = utils.get_groups()
+            lights = utils.get_lights(self.workflow, from_cache=True)
+            groups = utils.get_groups(self.workflow)
             rid = control[1]
 
             self.items = action_filter.get_items(
@@ -95,8 +95,8 @@ all_lights:
                     arg='set_bridge:%s' % query)
 
             else:
-                lights = utils.get_lights()
-                groups = utils.get_groups()
+                lights = utils.get_lights(self.workflow)
+                groups = utils.get_groups(self.workflow)
 
                 if not lights:
                     self._add_item(
@@ -295,7 +295,7 @@ save_scene:
             if function == 'set':
                 self.icon = 'scene.png'
                 self.partial_query = value
-                scenes = utils.get_scenes(id)
+                scenes = utils.get_scenes(self.workflow, id)
                 items = sorted(scenes.items(), key=lambda kv: kv[1].get('lastupdated'))
                 for sid, scene in items:
                     self._add_item(

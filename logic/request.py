@@ -1,12 +1,11 @@
 import requests
-from workflow import Workflow3 as Workflow
 
 
 class HueRequest():
     """Handles Philips Hue API path strings and logs every request for debugging."""
 
-    def __init__(self):
-        self.workflow = Workflow()
+    def __init__(self, workflow):
+        self.workflow = workflow
         self.api_path = '/api/%s' % self.workflow.settings['username']
         self.api_path_full = 'http://{bridge_ip}{api_path}'.format(
             bridge_ip=self.workflow.settings['bridge_ip'],

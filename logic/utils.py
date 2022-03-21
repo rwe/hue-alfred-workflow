@@ -2,12 +2,9 @@ import colorsys
 import re
 
 import png
-from workflow import Workflow3 as Workflow
 
 from . import colors
 from .css_colors import CSS_LITERALS as css_colors
-
-workflow = Workflow()
 
 
 def search_for_bridge(timeout=3):
@@ -24,7 +21,7 @@ def search_for_bridge(timeout=3):
         return None
 
 
-def load_full_state(timeout=3):
+def load_full_state(workflow, timeout=3):
     """Downloads full state and caches it locally."""
     # Requests is an expensive import so we only do it when necessary.
     import requests
@@ -61,7 +58,7 @@ def create_light_icon(lid, light_data):
     png.from_array([rgb_value], mode='RGB').save('icons/%s.png' % lid)
 
 
-def get_lights(from_cache=False):
+def get_lights(workflow, from_cache=False):
     """Returns a dictionary of lid => data, or None if no lights data is in the cache.
     Returns None if there are issues connecting to the bridge.
 
@@ -72,14 +69,14 @@ def get_lights(from_cache=False):
         from requests.exceptions import RequestException
         try:
             try:
-                load_full_state()
+                load_full_state(workflow)
             except RequestException:
                 try:
                     bridge_ip = search_for_bridge()
                     if not bridge_ip:
                         return None
                     workflow.settings['bridge_ip'] = bridge_ip
-                    load_full_state()
+                    load_full_state(workflow)
                 except RequestException:
                     return None
         except TypeError:
@@ -103,7 +100,7 @@ def get_lights(from_cache=False):
     return filtered_lights
 
 
-def get_groups():
+def get_groups(workflow):
     data = workflow.stored_data('full_state')
 
     try:
@@ -113,16 +110,16 @@ def get_groups():
         return None
 
 
-def get_group_lids(group_id):
+def get_group_lids(workflow, group_id):
     if group_id == '0':
-        lids = get_lights(from_cache=True).keys()
+        lids = get_lights(workflow, from_cache=True).keys()
     else:
-        group = get_groups().get(group_id)
+        group = get_groups(workflow).get(group_id)
         lids = group['lights']
     return lids
 
 
-def get_scenes(group_id):
+def get_scenes(workflow, group_id):
     data = workflow.stored_data("full_state")
 
     # check if this is deconz, scenes are stored per group
@@ -147,7 +144,7 @@ def get_scenes(group_id):
     else:
         # it's probably a hue
         scenes = data["scenes"]
-        lids = get_group_lids(group_id)
+        lids = get_group_lids(workflow, group_id)
         return {
             id: scene
             for id, scene in scenes.items()
