@@ -335,7 +335,7 @@ save_scene:
                 self._add_item(
                     'color_picker',
                     valid=True,
-                    arg='colorpicker %s:%s:color:<color>' % (type, id))
+                    arg=('colorpicker', '%s:%s:color:<color>' % (type, id)))
 
             elif function == 'bri':
                 self._add_item(
@@ -409,7 +409,7 @@ save_scene:
                         'color_picker',
                         icon='%s.png' % mode,
                         valid=True,
-                        arg='colorpicker groups:%s:harmony:%s:<color>' % (id, mode))
+                        arg=('colorpicker', 'groups:%s:harmony:%s:<color>' % (id, mode)))
 
                 else:
                     self._add_item(

@@ -22,7 +22,8 @@ def pick_color(default_color_rgb=(0.5, 0.5, 0.5)):
 
 
 def run_colorpicker(workflow):
-    action_template = workflow.args[1:]
+    # 'action', 'colorpicker', template…
+    action_template = workflow.args[2:]
     assert any('<color>' in w for w in action_template)
 
     # convert normalized float components in [0,1] to hex string, like "ff00ff".

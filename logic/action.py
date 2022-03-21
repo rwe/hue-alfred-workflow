@@ -6,6 +6,7 @@ import random
 import sys
 import time
 
+from .colorpicker import run_colorpicker
 from . import colors
 from . import harmony
 from . import request
@@ -198,6 +199,9 @@ class HueAction:
 
 
 def run_action(workflow):
+    if workflow.args[1] == 'colorpicker':
+        return run_colorpicker(workflow)
+
     # Handle multiple queries separated with '|' (pipe) character
     queries = workflow.args[1].split('|')
 
