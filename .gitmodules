@@ -1,6 +1,6 @@
 [submodule "workflow"]
 	path = logic/packages/workflow
-	url = git@github.com:deanishe/alfred-workflow.git
+	url = git@github.com:NorthIsUp/alfred-workflow-py3.git
 [submodule "yaml"]
 	path = logic/packages/yaml
 	url = git@github.com:yaml/pyyaml.git
